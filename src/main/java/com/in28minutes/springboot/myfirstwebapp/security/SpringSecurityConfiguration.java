@@ -16,14 +16,17 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
+//springSecurity설정 
 @Configuration
 public class SpringSecurityConfiguration {
+	
 	//LDAP or Database
 	//In Memory 
 	
 	//InMemoryUserDetailsManager
 	//InMemoryUserDetailsManager(UserDetails... users)
 	
+	//메모리 내에서 유저정보 관
 	@Bean
 	public InMemoryUserDetailsManager createUserDetailsManager() {
 		
@@ -34,6 +37,7 @@ public class SpringSecurityConfiguration {
 	}
 
 	private UserDetails createNewUser(String username, String password) {
+		
 		Function<String, String> passwordEncoder
 		= input -> passwordEncoder().encode(input);
 
@@ -41,11 +45,11 @@ public class SpringSecurityConfiguration {
 									.passwordEncoder(passwordEncoder)
 									.username(username)
 									.password(password)
-									.roles("USER","ADMIN")
+									.roles("USER","ADMIN") //role
 									.build();
 		return userDetails;
 	}
-
+	
 	@Bean
 	public PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
