@@ -13,6 +13,7 @@ import jakarta.validation.constraints.Size;
 //JPA
 // Bean -> Database Table
 
+//@Entit 어노테이션으로 H2 데이터베이스 테이블 생성 
 @Entity
 public class Todo {
 
@@ -29,8 +30,8 @@ public class Todo {
 		this.done = done;
 	}
 
-	@Id
-	@GeneratedValue
+	@Id //primary Key
+	@GeneratedValue //Sequnce 적용
 	private int id;
 
 	private String username;
