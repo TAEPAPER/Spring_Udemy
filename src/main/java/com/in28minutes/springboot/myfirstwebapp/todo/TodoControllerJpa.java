@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import jakarta.validation.Valid;
 
+
+//JPA(*Repository)를 활용한 controller
 @Controller
 @SessionAttributes("name")
 public class TodoControllerJpa {
@@ -29,7 +31,7 @@ public class TodoControllerJpa {
 	@RequestMapping("list-todos")
 	public String listAllTodos(ModelMap model) {
 		String username = getLoggedInUsername(model);
-				
+		
 		List<Todo> todos = todoRepository.findByUsername(username);
 		model.addAttribute("todos", todos);
 		
